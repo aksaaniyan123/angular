@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
       if (pswd == users[acno]["password"]) {//here in this line pswd means var pswd...and "password " accountdetails enna objectil ( seen in starting ) koduthekkunnathanu
         alert("login success");
-        //this.router.navigateByUrl("dashboard");//to redirect to another page 
+        this.router.navigateByUrl("dashboard");//to redirect to another page 
       }
 
       else {
