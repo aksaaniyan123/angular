@@ -4,7 +4,7 @@
       <div class="card-body">
       <h1 class="card-title text-center">Register here</h1>
       <h3>Register form</h3><!--string interpolation method-->
-      <form class="form">
+      <form (ngSubmit)="register()">
         <div class="form-group row">
           <label for="account" class="form-label">Account NO</label>
           <input type="text" class="form-control" [(ngModel)] ="acno" name="account" id="acno">
@@ -22,12 +22,16 @@
       
       <div class="form-group row">
 
-        <button type="button" class="btn btn-success"(click)="register()" >Register</button>
-        
+        <button type="submit" class="btn btn-success"(click)="register()" >Register</button>
+        <a routerLink="">Login</a>
+
+        </div>
+        </div>
       </div>
-</div>
-</div>
-</div>
+      </div>
+
+
+
 
 
 

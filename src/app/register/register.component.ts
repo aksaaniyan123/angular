@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-register',
@@ -11,11 +12,41 @@ export class RegisterComponent implements OnInit {
   acno="";
   pswd="";
 
-  constructor(private router: Router) { }
+  constructor(private dataService:DataService,private router:Router) { }
 
   ngOnInit(): void {
   }
 register(){
-  alert("register clicked")
+  
+  var uname=this.uname;
+  var acno=this.acno;
+  var pswd=this.pswd;
+  const result=this.dataService.register(uname,acno,pswd)
+  if(result){
+    alert("succesfully registered.....");
+         this.router.navigateByUrl("");
+
+  }
+  else{
+    alert("user exists....please login")
+  }
 }
+
+//   let user=this.dataService.accountDetails;
+//   if(acno in user){
+//     alert("user exists...please login")
+
+//   }
+//   else{
+//     user[acno]={
+//       acno,
+//       username:uname,
+//       password:pswd,
+//       balance:0
+//     }
+//     alert("succesfully registered.....");
+//     this.router.navigateByUrl("");
+//   }
+// }
+// }
 }
