@@ -84,21 +84,28 @@
       <h3>withdraw money</h3>
    </div>
    <div class="col-12 col-sm-9">
-    <form>
+    <form (ngSubmit)="withdraw()">
       <div class="form-group row">
         <label for="account" class="col-md-1 form-label">Account NO</label>
         <div class="col-md-7">
-        <input type="text" class="form-control" id="account">
+        <input type="text" class="form-control" name="accnumber" [(ngModel)]="wAccno" id="account">
         </div>
       </div> 
-        <div class="form-group row">
-            <label for="amount" class="col-md-1 col-form-label">Amount:</label>
-            <div class="col-md-7">
-            <input type="text" class="form-control" id="amount" placeholder="Enter money to withdraw" name="amount">
-            </div>
-              <button type="button" class="btn btn-success col-3" id="withdraw" onclick="Bank.withdraw()">Check Balance</button>
-            
+      <div class="form-group row">
+        <label for="account" class="col-md-1 form-label">Password</label>
+        <div class="col-md-7">
+        <input type="text" class="form-control" name="passw" [(ngModel)]="wPswd" id="password">
         </div>
+      </div> 
+      <div class="form-group row">
+        <label for="amount_dep" class="col-md-1 col-form-label">Amount:</label>
+        <div class="col-md-7">
+        <input type="text" class="form-control" name="amount" [(ngModel)]="wAmount" id="amount" >
+        </div>
+      </div>
+              <button type="submit" class="btn btn-success col-3" id="withdraw">Check Balance</button>
+            
+        
         </form>
         </div>
         <div class="row">
@@ -109,6 +116,8 @@
   </div>
 </div> 
        
+
+
 <!--deposit-->
 <div class="tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
   <div class="row">
@@ -116,19 +125,26 @@
      <h3>Deposit money</h3>
    </div>
    <div class="col-12 col-sm-9">
-    <form>
+
+    <form (ngSubmit)="deposit()">
       <div class="form-group row">
         <label for="account" class="col-md-1 form-label">Account NO</label>
         <div class="col-md-7">
-        <input type="text" class="form-control" id="account">
+        <input type="text" class="form-control" name="accno" [(ngModel)]="dAccno" id="account">
+        </div>
+      </div> 
+      <div class="form-group row">
+        <label for="account" class="col-md-1 form-label">Password</label>
+        <div class="col-md-7">
+        <input type="text" class="form-control"name="pass" [(ngModel)]="dPswd" id="pass">
         </div>
       </div> 
       <div class="form-group row">
         <label for="amount_dep" class="col-md-1 col-form-label">Amount:</label>
         <div class="col-md-7">
-        <input type="text" class="form-control" id="amount_dep" placeholder="Enter money to deposit" name="amount_dep">
+        <input type="text" class="form-control" name="amount" [(ngModel)]="dAmount"id="amount_dep" placeholder="Enter money to deposit" name="amount_dep">
         </div>
-              <button type="button" class="btn btn-success col-3" id="deposit" onclick="Bank.deposit()">Submit</button>
+              <button type="submit" class="btn btn-success col-3" id="deposit">Submit</button>
             
         </div>
         </form>
