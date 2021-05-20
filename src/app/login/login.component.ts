@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 
@@ -10,11 +11,17 @@ import { DataService } from '../service/data.service';
 })
 export class LoginComponent implements OnInit {
   aim = "your perfect partner"
-  acno = "account number please"
-  uname = "";
-  pswd = "";
+  //acno = "account number please"
+  //uname = "";
+  //pswd = "";
+  loginForm = this.fb.group({
+    uname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    acno: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+    pswd: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
+
+  })
   
-  constructor(private router: Router,private dataService:DataService) { }
+  constructor(private router: Router,private dataService:DataService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -34,16 +41,20 @@ export class LoginComponent implements OnInit {
 
   // }
   login() {
-    
-    var acno = this.acno
-    //var usname = this.uname
-    var pswd = this.pswd
+    if(this.loginForm.valid){
+    var acno = this.loginForm.value.acno
+    var usname = this.loginForm.value.uname
+    var pswd = this.loginForm.value.pswd
     const result=this.dataService.login(acno,pswd)
     if(result){
       alert("login succesfully...")
       this.router.navigateByUrl("dashboard")
     }
     }
+    else{
+      alert("invalid form")
+    }
+  }
     //let users = this.dataService.accountDetails;
   //   if (acno in users) {
 

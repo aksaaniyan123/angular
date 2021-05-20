@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   register() {
-    console.log(this.registerForm.get('uname')?.errors);
+    // console.log(this.registerForm.get('uname')?.errors);
 
-    if (this.registerForm.get('uname')?.errors)//to check form is valid or not
+    // if (this.registerForm.get('uname')?.errors)//to check form is valid or not
 
-    {
-      alert(" invalid username ")
-    }
+    // {
+    //   alert(" invalid username ")
+    // }
 
 
 
