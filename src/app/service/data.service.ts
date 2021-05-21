@@ -1,9 +1,11 @@
+import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  currentUser=""
   accountDetails: any = {
     1000: { acno: 1000, username: "userone", password: "userone", balance: 50000 },
     1001: { acno: 1001, username: "usertwo", password: "usertwo", balance: 5000 },
@@ -11,7 +13,28 @@ export class DataService {
     1003: { acno: 1003, username: "userfour", password: "userfour", balance: 6000 }
   }
 
-  constructor() { }
+  constructor() {
+    this.getDetails();
+   }
+  saveDetails(){
+    localStorage.setItem("accountDetails",JSON.stringify(this.accountDetails))
+    if(this.currentUser)
+    {
+      localStorage.setItem("currentUser",JSON.stringify(this.currentUser))
+    }
+    
+  }
+  getDetails(){
+    if(localStorage.getItem("accountDetails")){
+    this.accountDetails=JSON.parse(localStorage.getItem("accountDetails") || '')
+    }
+    if(localStorage.getItem("currentUser")){
+
+    
+    this.currentUser=JSON.parse(localStorage.getItem("currentUser") || '')
+  }
+}
+  
   register(uname:any,acno:any,pswd:any)
   {
     
@@ -27,6 +50,7 @@ export class DataService {
         password:pswd,
         balance:0
       }
+      this.saveDetails();
       return true;
       
     }
@@ -35,6 +59,8 @@ export class DataService {
     let users=this.accountDetails;
     if(acno in users){
       if(pswd==users[acno]["password"]){
+this.currentUser=users[acno]["username"]
+this.saveDetails();
         return true;
       }
       else{
@@ -51,10 +77,9 @@ export class DataService {
       var amount=parseInt(amt);
       let user=this.accountDetails;
       if(acno in user){
-      
-        
-          if(pswd==user[acno]["password"]){ 
+        if(pswd==user[acno]["password"]){ 
             user[acno]["balance"]+=amount;
+            this.saveDetails();
             return user[acno]["balance"];
 
         }
@@ -79,6 +104,7 @@ export class DataService {
 
             if(user[acno]["balance"]>amount){
             user[acno]["balance"]-=amount;
+            this.saveDetails();
             return user[acno]["balance"];
 
         }

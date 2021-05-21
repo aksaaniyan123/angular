@@ -24,22 +24,22 @@ export class DashboardComponent implements OnInit {
 
   })
   withdrawForm = this.fb.group({
-    //uname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    //uname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],//user enter cheyyunna fields ividay kodukkanam
     acno: ['', [Validators.required, Validators.pattern('[0-9]*')]],
     pswd: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
     amount: ['', [Validators.required, Validators.pattern('[0-9]*')]],
 
   })
 
-
+user=this.dataService.currentUser;
   constructor(private dataService: DataService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   deposit() {
-    if (this.depositForm.valid) {
-      var acno = this.depositForm.value.acno
+    if (this.depositForm.valid) {//eee deposit form valid anaon nokkan
+      var acno = this.depositForm.value.acno//
       //var usname = this.depositForm.value.uname
       var pswd = this.depositForm.value.pswd
       var amount = this.depositForm.value.amount
