@@ -45,12 +45,27 @@ export class LoginComponent implements OnInit {
     var acno = this.loginForm.value.acno
     var usname = this.loginForm.value.uname
     var pswd = this.loginForm.value.pswd
-    const result=this.dataService.login(acno,pswd)
-    if(result){
-      alert("login succesfully...")
-      this.router.navigateByUrl("dashboard")
+
+    this.dataService.login(acno,pswd)
+    .subscribe((result:any)=>{
+      if(result){
+        alert(result.message);
+        localStorage.setItem("name",result.name);
+           //alert("login succesfully...")
+          this.router.navigateByUrl("dashboard")
+  
+      }
+      
+      },
+      (result)=>{
+        alert(result.error.message)
+     })
     }
-    }
+    // if(result){
+    //   alert("login succesfully...")
+    //   this.router.navigateByUrl("dashboard")
+    // }
+    // }
     else{
       alert("invalid form")
     }

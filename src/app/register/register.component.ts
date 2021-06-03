@@ -42,16 +42,26 @@ if(this.registerForm.valid){
     var uname = this.registerForm.value.uname;
     var acno = this.registerForm.value.acno;
     var pswd = this.registerForm.value.pswd;
-    const result = this.dataService.register(uname, acno, pswd)
-    if (result) {
-      alert("succesfully registered.....");
-      this.router.navigateByUrl("");
 
+    
+     this.dataService.register(uname, acno, pswd)
+     .subscribe((result:any)=>{
+      if (result) {
+        alert(result.message);
+        this.router.navigateByUrl("");
+  
+      }
+      
+      },
+      (result)=>{
+        alert(result.error.message)
+     })
+   
+  //   else {
+  //     alert("user exists....please login")
+  //   }
+  // }
     }
-    else {
-      alert("user exists....please login")
-    }
-  }
     else{
 alert("invalid form")
     }

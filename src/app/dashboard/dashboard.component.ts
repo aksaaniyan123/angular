@@ -30,9 +30,12 @@ export class DashboardComponent implements OnInit {
     amount: ['', [Validators.required, Validators.pattern('[0-9]*')]],
 
   })
+  user:any;
 
-user=this.dataService.currentUser;
-  constructor(private dataService: DataService, private fb: FormBuilder) { }
+//user=this.dataService.currentUser;
+  constructor(private dataService: DataService, private fb: FormBuilder) { 
+  this.user=localStorage.getItem("name")
+  }
 
   ngOnInit(): void {
   }
@@ -43,17 +46,31 @@ user=this.dataService.currentUser;
       //var usname = this.depositForm.value.uname
       var pswd = this.depositForm.value.pswd
       var amount = this.depositForm.value.amount
-      const result = this.dataService.deposit(acno,pswd,amount)
+       this.dataService.deposit(acno,pswd,amount)
+       //this.dataService.register(uname, acno, pswd)
+     .subscribe((result:any)=>{
+      if (result) {
+        alert(result.message);
+        //this.router.navigateByUrl("");
+  
+      }
+      
+      },
+      (result:any)=>{
+        alert(result.error.message)
+     })
+    }
+   
       // alert("amount credited")
       // var accno=this.dAccno
       // var pswd=this.dPswd
       // var amount=this.dAmount
       // const result=this.dataService.deposit(accno,pswd,amount)
-      if (result) {
-        alert("the given amount" + amount + " credited and new balance is : " + result);
-      }
+    //   if (result) {
+    //     alert("the given amount" + amount + " credited and new balance is : " + result);
+    //   }
 
-    }
+    // }
     else{
       alert("invalid user")
     }
