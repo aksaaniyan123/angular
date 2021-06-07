@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
 
   })
   user:any;
+  acno:any;
+  router: any;
 
 //user=this.dataService.currentUser;
   constructor(private dataService: DataService, private fb: FormBuilder) { 
@@ -81,14 +83,45 @@ export class DashboardComponent implements OnInit {
         var accno = this.withdrawForm.value.acno
         var pswd = this.withdrawForm.value.pswd
         var amount = this.withdrawForm.value.amount
-        const result = this.dataService.withdraw(accno, pswd, amount)
-        if (result) {
-          alert("the given amount" + amount + " withdrawed and new balance is : " + result);
+         this.dataService.withdraw(accno, pswd, amount)
+         .subscribe((result:any)=>{
+          if (result) {
+            alert(result.message);
+            //this.router.navigateByUrl("");
+      
+          }
+          
+          },
+          (result:any)=>{
+            alert(result.error.message)
+         })
         }
-      }
+  //       if (result) {
+  //         alert("the given amount" + amount + " withdrawed and new balance is : " + result);
+  //       }
+  //     }
       else{
-        alert("invalid form")
-      }
-    }
+       alert("invalid form")
+     }
   }
+  onDelete(event:any)
+  {
+    this.dataService.deleteAccDetails(event)
+    .subscribe((result:any)=>{
+      if(result){
+        alert(result.message)
+        this.router.navigateByUrl("")
+      }
+    },
+    (result:any)=>{
+      alert(result.error.message)
+   })
+  }
+  
+  deleteAcc()
+  {
+    this.acno=localStorage.getItem("acno")
+  }
+ }
 
+      

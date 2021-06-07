@@ -169,7 +169,9 @@
   </div>
 </div>
 
-
+<div class="col-4"></div>
+<app-delete-confirmation (onDelete)="onDelete($event)" [item]="acno"></app-delete-confirmation>
+<button type="submit" class="btn btn-success col-3" (click)="deleteAcc()"> Delete</button>
 
 
 <footer class="footer">

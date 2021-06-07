@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
       if(result){
         alert(result.message);
         localStorage.setItem("name",result.name);
+        localStorage.setItem("acno",result.acno);
            //alert("login succesfully...")
           this.router.navigateByUrl("dashboard")
   
