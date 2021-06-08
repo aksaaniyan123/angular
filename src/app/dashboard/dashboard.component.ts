@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
   user:any;
   acno:any;
   router: any;
+  lDate:Date= new Date()
 
 //user=this.dataService.currentUser;
   constructor(private dataService: DataService, private fb: FormBuilder) { 
@@ -116,6 +117,10 @@ export class DashboardComponent implements OnInit {
     (result:any)=>{
       alert(result.error.message)
    })
+  }
+  onCancel()
+  {
+    this.acno=""
   }
   
   deleteAcc()

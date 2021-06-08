@@ -1,4 +1,9 @@
-<div class="welcome">Welcome {{user}} !</div>
+<!--<div class ="welcome">Welcome {{user}} !</div>-->
+<h6 appHighlight>Welcome {{user}} !</h6>
+<h6>login details(unformatted):{{lDate }}</h6>
+<h6>login details(formatted):{{lDate | date : 'medium'}}</h6>
+<h6>login details(formatted):{{lDate  | date | uppercase}}
+
 <!-- tabs bar -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
@@ -170,7 +175,7 @@
 </div>
 
 <div class="col-4"></div>
-<app-delete-confirmation (onDelete)="onDelete($event)" [item]="acno"></app-delete-confirmation>
+<app-delete-confirmation (onDelete)="onDelete($event)"  (onCancel)="onCancel()" [item]="acno"></app-delete-confirmation>
 <button type="submit" class="btn btn-success col-3" (click)="deleteAcc()"> Delete</button>
 
 

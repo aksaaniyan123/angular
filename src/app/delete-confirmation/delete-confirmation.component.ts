@@ -7,8 +7,15 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./delete-confirmation.component.css']
 })
 export class DeleteconfirmationComponent implements OnInit {
+
   @Input() item:string | null |undefined;
+  
 @Output() onDelete =new EventEmitter;
+
+
+@Output() onCancel =new EventEmitter;
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,6 +23,13 @@ export class DeleteconfirmationComponent implements OnInit {
 delete()
 {
   this.onDelete.emit(this.item)
+  //alert("deleting..........")
+
+}
+cancel()
+{
+  alert("cancelling...................")
+  this.onCancel.emit()
   //alert("deleting..........")
 
 }
